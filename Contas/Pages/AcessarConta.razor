@@ -10,7 +10,6 @@
     <button @onclick="() => EscolherOperacao(3)">Depositar </button>
     <button @onclick="() => EscolherOperacao(4)">Transferir </button>
     <button @onclick="() => EscolherOperacao(5)">CobrarTarifa </button>
-    <button @onclick="() => EscolherOperacao(6)">SeuLimite </button>
 
     @switch (operacao)
     {
@@ -29,9 +28,6 @@
         case 5:
             <h1>Sua tarifa é do valor: R$19,90.</h1>
             break;
-        case 6:
-            <h1>Sua limite é de:</h1>
-            break;
 }
 }
 else
@@ -44,7 +40,6 @@ else
     public string? conta { get; set; }
     private int operacao = 0;
     private Carteira? carteira = null;
-
 
     //Ao Incializar a Pagina(Tela- Interface Grafica)
     protected override void OnInitialized()
