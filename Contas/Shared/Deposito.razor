@@ -1,0 +1,39 @@
+﻿<h3>Dados para Deposito</h3>
+<br><br>
+<p>Valor Para Deposito:</p>
+<input type="number" @bind="valor"/>
+<button @onclick="Depositar">Confirmar Deposito </button>
+
+@if(depositoOk is not null)
+{
+    @if (depositoOk == true)
+        {
+        DateTime horaAtual = DateTime.Now;
+
+        DateTime horaInicioComercial = new DateTime(horaAtual.Year, horaAtual.Month, horaAtual.Day, 8, 0, 0);
+        DateTime horaFimComercial = new DateTime(horaAtual.Year, horaAtual.Month, horaAtual.Day, 18, 0, 0);
+
+        if (horaAtual >= horaInicioComercial && horaAtual <= horaFimComercial)
+        {
+            <h1>Deposito Realizado com sucesso!</h1>
+        }
+    }
+        else
+        {
+        <h1>As operações de Deposito só podem ser realizadas durante o horário comercial das 08:00 às 18:00.</h1>  
+    }
+}
+
+@code {
+    [Parameter]
+    public Carteira? Conta { get; set; }
+    
+    private bool? depositoOk = null;
+    private double valor;
+
+    private void Depositar()
+    {
+        depositoOk = Conta.Depositar(valor);
+    }
+
+}
